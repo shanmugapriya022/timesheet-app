@@ -10,14 +10,14 @@ import Users from './components/Users';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 
-const ProtectedRoute: React.FC<{ children: JSX.Element; allowedRoles?: string[] }> = ({ children, allowedRoles }) => {
+const ProtectedRoute: React.FC<{ children: React.ReactNode; allowedRoles?: string[] }> = ({ children, allowedRoles }) => {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" />;
   if (allowedRoles && !allowedRoles.includes(user.role)) return <Navigate to="/dashboard" />;
   return children;
 };
 
-const MainLayout: React.FC<{ children: JSX.Element }> = ({ children }) => (
+const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="flex h-screen">
     <Sidebar />
     <div className="flex-1 flex flex-col">
